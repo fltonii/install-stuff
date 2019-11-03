@@ -1,8 +1,8 @@
 mkdir temp
 cd temp
 
-email="tonialjoao97@gmail.com"
-name="fltonii"
+read -p "git username: " name
+read -p "git email: " email
 
 install_yay() {
   if pacman -Qs yay > /dev/null ; then
@@ -77,11 +77,16 @@ install_zsh() {
     echo "zsh already installed"
   else
     yay -Sy zsh
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
   fi
 }
 
-install_oh_my_zsh() {  
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+install_slack() {
+    if yay -Qs slack-desktop > /dev/null ; then
+    echo "slack already installed"
+  else
+    yay -Sy slack-desktop
+  fi
 }
 
 cleanup() {
@@ -98,7 +103,6 @@ cleanup() {
   install_chrome
   install_vscode
   install_zsh
-  install_oh_my_zsh
   install_and_config_git
   install_spotify
   cleanup
