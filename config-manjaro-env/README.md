@@ -1,4 +1,4 @@
-# For the sake of lazyness
+# For the sake of laziness
 
 Everytime I change distros (very often) or just reset my OS I do this process over and over to a point where i was starting to settle for non optimal developer/user experiences because of the work of installing it all again.
 
