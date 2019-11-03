@@ -1,7 +1,8 @@
 mkdir temp
 cd temp
-read -p "git username: " name
-read -p "git email: " email
+
+email="tonialjoao97@gmail.com"
+name="fltonii"
 
 install_yay() {
   if pacman -Qs yay > /dev/null ; then
@@ -12,14 +13,6 @@ install_yay() {
     makepkg -si
     cd ../
     rm -rf yay
-  fi
-}
-
-install_python3() {
-  if yay -Qs python3 > /dev/null ; then
-    echo "python3 already installed"
-  else
-    yay -Sy python3
   fi
 }
 
@@ -46,8 +39,8 @@ install_and_config_git() {
     yay -Sy git
   fi
   
-  git config --global user.email "$email"
-  git config --global user.name "$name"
+  git config --global user.email $email
+  git config --global user.name $name
 
   git config --global alias.ck checkout
   git config --global alias.br branch
@@ -72,7 +65,11 @@ install_vscode() {
 }
 
 install_spotify() {
-  snap install spotify
+  if yay -Qs spotify-dev > /dev/null ; then
+    echo "spotify already installed"
+  else
+    yay -Sy spotify-dev
+  fi
 }
 
 install_zsh() {
