@@ -1,9 +1,6 @@
 mkdir temp
 cd temp
 
-read -p "git username: " name
-read -p "git email: " email
-
 install_yay() {
   if pacman -Qs yay > /dev/null ; then
     echo "yay is already installed"
@@ -39,6 +36,10 @@ install_and_config_git() {
     yay -Sy git
   fi
   
+  read -p "git username: " name
+  read -p "git email: " email
+
+
   git config --global user.email $email
   git config --global user.name $name
 
