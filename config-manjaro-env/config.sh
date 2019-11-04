@@ -76,17 +76,44 @@ install_zsh() {
   if yay -Qs zsh > /dev/null ; then
     echo "zsh already installed"
   else
-    yay -Sy zsh
+    yay -Sy zsh && \
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
   fi
 }
 
 install_slack() {
-    if yay -Qs slack-desktop > /dev/null ; then
+  if yay -Qs slack-desktop > /dev/null ; then
     echo "slack already installed"
   else
     yay -Sy slack-desktop
   fi
+}
+
+
+install_discord() {
+  if yay -Qs discord-canary > /dev/null ; then
+    echo "discord already installed"
+  else
+    yay -Sy discord-canary
+  fi
+}
+
+install_flutter() {
+  if flutter --version > /dev/null ; then
+    echo "flutter already installed"
+  else
+    mkdir ~/flutter
+    cd ~/flutter
+    curl -o ~/flutter/flutter_source.tar.xz https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_v1.9.1+hotfix.6-stable.tar.xz && \
+    tar xf flutter_source.tar.xz && \
+    echo "PATH=$PATH:~/flutter/flutter/bin" >> ~/.zshrc 
+    cd -
+  fi
+}
+
+install_vscode_extensions() {
+  curl -o ./script.py https://raw.githubusercontent.com/fltonii/scripts/master/config-manjaro-env/config-manjaro-env.py
+  python script.py 
 }
 
 cleanup() {
@@ -105,6 +132,10 @@ cleanup() {
   install_zsh
   install_and_config_git
   install_spotify
+  install_slack
+  install_discord
+  install_flutter
+  install_vscode_extensions
   cleanup
 } || {
 cleanup
