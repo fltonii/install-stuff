@@ -113,7 +113,8 @@ install_flutter() {
 }
 
 install_vscode_extensions() {
-  curl -o ./script.py https://raw.githubusercontent.com/fltonii/scripts/master/config-manjaro-env/config-manjaro-env.py
+  curl -o ./script.py https://raw.githubusercontent.com/fltonii/scripts/master/config-manjaro-env/install-vscode-extensions.py
+  env.py
   python script.py 
 }
 
