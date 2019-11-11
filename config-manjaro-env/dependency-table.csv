@@ -1,0 +1,10 @@
+name,source,package name,preinstall,postinstall,root
+Yay,pacman,yay,sudo pacman -Syyu,yay -Syyu,TRUE
+git,yay,git,,,
+VSCode,yay,visual-studio-code-bin,,curl -o ./script.py https://raw.githubusercontent.com/fltonii/scripts/master/config-manjaro-env/install-vscode-extensions.py && py ./script.py,
+Node,yay,nodejs,,,
+Yarn,yay,yarn,,,
+Chrome dev,yay,google-chrome-dev,,,
+Spotify,yay,spotify-dev,,,
+Slack,yay,slack-desktop,,,
+Discord,yay,discord-canary,,,

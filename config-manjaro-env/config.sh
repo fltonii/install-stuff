@@ -13,22 +13,6 @@ install_yay() {
   fi
 }
 
-install_yarn() {
-  if yay -Qs yarn > /dev/null ; then
-    echo "yarn is already installed"
-  else
-    yay -Sy yarn
-  fi
-}
-
-install_chrome() {
-  if yay -Qs google-chrome-dev > /dev/null ; then
-    echo "chrome already installed"
-  else
-    yay -Sy google-chrome-dev
-  fi
-}
-
 install_and_config_git() {
   if pacman -Qs git > /dev/null ; then
     echo "git already installed"
@@ -49,53 +33,12 @@ install_and_config_git() {
   git config --global alias.last 'log -1 HEAD'
 }
 
-install_node() {
-  if yay -Qs nodejs > /dev/null ; then
-    echo "nodejs already installed"
-  else
-    yay -Sy nodejs
-  fi
-}
-
-install_vscode() {
-  if yay -Qs visual-studio-code-bin > /dev/null ; then
-    echo "vscode already installed"
-  else
-    yay -Sy visual-studio-code-bin
-  fi
-}
-
-install_spotify() {
-  if yay -Qs spotify-dev > /dev/null ; then
-    echo "spotify already installed"
-  else
-    yay -Sy spotify-dev
-  fi
-}
-
 install_zsh() {
   if yay -Qs zsh > /dev/null ; then
     echo "zsh already installed"
   else
     yay -Sy zsh && \
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-  fi
-}
-
-install_slack() {
-  if yay -Qs slack-desktop > /dev/null ; then
-    echo "slack already installed"
-  else
-    yay -Sy slack-desktop
-  fi
-}
-
-
-install_discord() {
-  if yay -Qs discord-canary > /dev/null ; then
-    echo "discord already installed"
-  else
-    yay -Sy discord-canary
   fi
 }
 

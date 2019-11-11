@@ -1,2 +1,0 @@
-name,source,package name,preinstall,postinstall
-Yay,pacman,yay,pacman -Syyu,yay -Syyu
