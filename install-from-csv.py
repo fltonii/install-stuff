@@ -49,7 +49,6 @@ def isAlreadyInstalled(package):
     return True
   except:
     return False
-    
 
 packages = getPackages()
 for package in packages:
@@ -77,5 +76,3 @@ for package in packages:
     subprocess.check_call(getInstallCommand(package), shell=True)
   except:
     print(package['name'] + " installation failed")
-
-# todo: copy config/keybindings from ~/.config/Code
