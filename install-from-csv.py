@@ -29,9 +29,10 @@ def getInstallCommand(package):
     script = package['script']
     if source == "pacman":
         return f"pacman -Sy --noconfirm {package}"
-    if source == "yay":
+    elif source == "yay":
         return f"yay -Sy --noconfirm {package}"
-    if source == "custom"
+    elif source == "custom"
+        print(script)
         return script
 
 def isAlreadyInstalled(package):
