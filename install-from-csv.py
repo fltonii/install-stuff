@@ -81,26 +81,25 @@ def runPostinstallStep(package):
     except:
         print("postinstall for " + package["name"] + "failed :C")
 
-def main():
-    packages = setPackages()
-    for package in packages:
-        if isAlreadyInstalled(package):
-            print(package['name'] + " is already installed")
-            continue
-    
-        if package['preinstall']:
-            try:
-                runPreinstallStep(package)
-            except:
-                continue
-    
+packages = setPackages()
+for package in packages:
+    if isAlreadyInstalled(package):
+        print(package['name'] + " is already installed")
+        continue
+
+    if package['preinstall']:
         try:
-            runInstallationStep(package)
+            runPreinstallStep(package)
         except:
             continue
-    
-        if package['postinstall']:
-            try:
-                runPostinstallStep(package)
-            except:
-                continue
+
+    try:
+        runInstallationStep(package)
+    except:
+        continue
+
+    if package['postinstall']:
+        try:
+            runPostinstallStep(package)
+        except:
+            continue
