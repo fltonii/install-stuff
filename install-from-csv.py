@@ -81,7 +81,7 @@ def runPostinstallStep(package):
     except:
         print("postinstall for " + package["name"] + "failed :C")
 
-packages = setPackages()
+packages = getPackages()
 for package in packages:
     if isAlreadyInstalled(package):
         print(package['name'] + " is already installed")
