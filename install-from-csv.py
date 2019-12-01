@@ -16,34 +16,23 @@ def getPackages():
                     "package": row_list[2],
                     "preinstall": row_list[3],
                     "postinstall": row_list[4],
-                    "root": row_list[5]
+                    "script": row_list[5]
                 }
                 packages.append(line_dict)
             line = line + 1
         return packages
 
 
-def getSourceInstallCommand(package):
+def getInstallCommand(package):
     source = package['source']
     package = package['package']
+    script = package['script']
     if source == "pacman":
         return f"pacman -Sy --noconfirm {package}"
-    if source == "git":
-        return f"git clone {package}"
     if source == "yay":
         return f"yay -Sy --noconfirm {package}"
-
-
-def insertRootIfNeeded(command, root):
-    if bool(root):
-        return "sudo " + command
-    return command
-
-
-def getInstallCommand(package):
-    command = getSourceInstallCommand(package)
-    return insertRootIfNeeded(command, package["root"])
-
+    if source == "custom"
+        return script
 
 def isAlreadyInstalled(package):
     source = package['source']
@@ -91,26 +80,26 @@ def runPostinstallStep(package):
     except:
         print("postinstall for " + package["name"] + "failed :C")
 
-
-packages = getPackages()
-for package in packages:
-    if isAlreadyInstalled(package):
-        print(package['name'] + " is already installed")
-        continue
-
-    if package['preinstall']:
+def main():
+    packages = setPackages()
+    for package in packages:
+        if isAlreadyInstalled(package):
+            print(package['name'] + " is already installed")
+            continue
+    
+        if package['preinstall']:
+            try:
+                runPreinstallStep(package)
+            except:
+                continue
+    
         try:
-            runPreinstallStep(package)
+            runInstallationStep(package)
         except:
             continue
-
-    try:
-        runInstallationStep(package)
-    except:
-        continue
-
-    if package['postinstall']:
-        try:
-            runPostinstallStep(package)
-        except:
-            continue
+    
+        if package['postinstall']:
+            try:
+                runPostinstallStep(package)
+            except:
+                continue

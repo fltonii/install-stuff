@@ -1,10 +1,10 @@
-name,source,package name,preinstall,postinstall,root
-Yay,pacman,yay,sudo pacman -Syyu,yay -Syyu,TRUE
+name,source,package name,preinstall,postinstall,custom script
+Yay,git,,,yay,git clone https://aur.archlinux.org/yay.git yay cd yay ; makepkg -si ; cd ../ ; rm -rf yay
 git,yay,git,,,
-VSCode,yay,visual-studio-code-bin,,curl https://raw.githubusercontent.com/fltonii/scripts/master/vscode/run.sh && ./run.sh,
-Node,yay,nodejs,,,
-Yarn,yay,yarn,,,
-Chrome dev,yay,google-chrome-dev,,,
-Spotify,yay,spotify-dev,,,
-Slack,yay,slack-desktop,,,
-Discord,yay,discord-canary,,,
+VSCode,yay,visual-studio-code-bin,,
+Node,yay,nodejs,,
+Yarn,yay,yarn,,
+Chrome dev,yay,google-chrome-dev,,
+Spotify,yay,spotify-dev,,
+Slack,yay,slack-desktop,,
+Discord,yay,discord-canary,,
