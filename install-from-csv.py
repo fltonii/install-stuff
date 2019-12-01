@@ -27,10 +27,6 @@ def getInstallCommand(package):
     source = package['source']
     package_name = package['package']
     script = package['script']
-    print("=== log ===")
-    print(source)
-    print(package_name)
-    print(script)
     if source == "pacman":
         return f"pacman -Sy --noconfirm {package_name}"
     elif source == "yay":
@@ -51,7 +47,7 @@ def isAlreadyInstalled(package):
 
 
 def runPreinstallStep(package):
-    print("Running preintall step for " + package["name"])
+    print("=== Running preintall step for " + package["name"] + " ===")
     try:
         subprocess.check_call(package["preinstall"])
     except:
@@ -59,7 +55,7 @@ def runPreinstallStep(package):
         should_keep_installing = ""
         while not supported_answer:
             should_keep_installing = input(
-                "Preinstall command for package " + package['name'] + " failed, continue installation? [Y/n] ").lower()
+                "=== Preinstall command for package " + package['name'] + " failed, continue installation? [Y/n] ===").lower()
             if should_keep_installing in ["n", "y", ""]:
                 supported_answer = True
             else:
@@ -73,16 +69,16 @@ def runInstallationStep(package):
     try:
         subprocess.check_call(getInstallCommand(package), shell=True)
     except:
-        print(package['name'] + " installation failed")
+        print("=== "package['name'] + " installation failed ===")
         raise Exception("install step failed")
 
 
 def runPostinstallStep(package):
-    print("Running postinstall step for " + package["name"])
+    print("=== Running postinstall step for " + package["name"] + " ===")
     try:
         subprocess.check_call(package["postinstall"])
     except:
-        print("postinstall for " + package["name"] + "failed :C")
+        print("=== postinstall for " + package["name"] + "failed :C ===")
 
 packages = getPackages()
 for package in packages:
