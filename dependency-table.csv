@@ -1,5 +1,5 @@
 name,source,package name,preinstall,postinstall,custom script
-Yay,custom,,,yay,bash <(curl https://raw.githubusercontent.com/fltonii/scripts/master/yay/install.sh)
+Yay,custom,,,yay,curl -s https://raw.githubusercontent.com/fltonii/scripts/master/yay/install.sh | bash -s
 git,yay,git,,,
 VSCode,yay,visual-studio-code-bin,,,
 Node,yay,nodejs,,,
