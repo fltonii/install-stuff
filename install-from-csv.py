@@ -31,7 +31,7 @@ def getInstallCommand(package):
         return f"pacman -Sy --noconfirm {package}"
     elif source == "yay":
         return f"yay -Sy --noconfirm {package}"
-    elif source == "custom"
+    elif source == "custom":
         print(script)
         return script
 
