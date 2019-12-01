@@ -69,7 +69,7 @@ def runInstallationStep(package):
     try:
         subprocess.check_call(getInstallCommand(package), shell=True)
     except:
-        print("=== "package['name'] + " installation failed ===")
+        print("=== " + package['name'] + " installation failed ===")
         raise Exception("install step failed")
 
 
