@@ -1,5 +1,5 @@
 name,source,package name,preinstall,postinstall,custom script
-Yay,custom,,,yay,git clone https://aur.archlinux.org/yay.git yay cd yay ; makepkg -si ; cd ../ ; rm -rf yay
+Yay,custom,,,yay,
 git,yay,git,,,
 VSCode,yay,visual-studio-code-bin,,,
 Node,yay,nodejs,,,

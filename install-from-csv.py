@@ -25,14 +25,17 @@ def getPackages():
 
 def getInstallCommand(package):
     source = package['source']
-    package = package['package']
+    package_name = package['package']
     script = package['script']
+    print("=== log ===")
+    print(source)
+    print(package_name)
+    print(script)
     if source == "pacman":
-        return f"pacman -Sy --noconfirm {package}"
+        return f"pacman -Sy --noconfirm {package_name}"
     elif source == "yay":
-        return f"yay -Sy --noconfirm {package}"
+        return f"yay -Sy --noconfirm {package_name}"
     elif source == "custom":
-        print(script)
         return script
 
 def isAlreadyInstalled(package):
