@@ -6,10 +6,12 @@ dsznajder.es7-react-js-snippets
 eamodio.gitlens
 esbenp.prettier-vscode
 formulahendry.auto-close-tag
+GrapeCity.gc-excelviewer
 MaxfieldWalker.vscode-color-theme-spirited-away
 ms-azuretools.vscode-docker
 ms-python.python
 ms-vscode.Go
+Prisma.vscode-graphql
 redhat.vscode-yaml
 streetsidesoftware.code-spell-checker
 WallabyJs.quokka-vscode
