@@ -1,6 +1,6 @@
 name,source,package name,preinstall,postinstall,custom script
 git,yay,git,,,
-VSCode,yay,visual-studio-code-bin,,,
+VSCode,yay,visual-studio-code-bin,,,https://raw.githubusercontent.com/fltonii/scripts/master/vscode/run.sh
 Node,yay,nodejs,,,
 Yarn,yay,yarn,,,
 Chrome dev,yay,google-chrome-dev,,,

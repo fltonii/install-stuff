@@ -2,6 +2,7 @@ import csv
 import os
 import subprocess
 
+PACKAGE = None
 
 def getPackages():
     with open("dependency-table.csv") as csv_file:
@@ -23,10 +24,10 @@ def getPackages():
         return packages
 
 
-def getInstallCommand(package):
-    source = package['source']
+def getInstallCommand():
+    source = PACKAGE['source']
     package_name = package['package']
-    script = package['script']
+    script = PACKAGE['script']
     if source == "pacman":
         return f"pacman -Sy --noconfirm {package_name}"
     elif source == "yay":
@@ -34,9 +35,9 @@ def getInstallCommand(package):
     elif source == "custom":
         return script
 
-def isAlreadyInstalled(package):
-    source = package['source']
-    pkg = package["package"]
+def isAlreadyInstalled():
+    source = PACKAGE['source']
+    pkg = PACKAGE["package"]
     if source == "git":
         return False  # ain't no sunshine
     try:
@@ -45,17 +46,16 @@ def isAlreadyInstalled(package):
     except:
         return False
 
-
-def runPreinstallStep(package):
-    print("=== Running preintall step for " + package["name"] + " ===")
+def runPreinstallStep():
+    print("=== Running preintall step for " + PACKAGE["name"] + " ===")
     try:
-        subprocess.check_call(package["preinstall"])
+        subprocess.check_call(PACKAGE["preinstall"])
     except:
         supported_answer = False
         should_keep_installing = ""
         while not supported_answer:
             should_keep_installing = input(
-                "=== Preinstall command for package " + package['name'] + " failed, continue installation? [Y/n] ===").lower()
+                "=== Preinstall command for package " + PACKAGE['name'] + " failed, continue installation? [Y/n] ===").lower()
             if should_keep_installing in ["n", "y", ""]:
                 supported_answer = True
             else:
@@ -64,41 +64,45 @@ def runPreinstallStep(package):
             raise Exception("preinstall step failed")
 
 
-def runInstallationStep(package):
-    print("Installing package " + package["name"])
+def runInstallationStep():
+    print("Installing package " + PACKAGE["name"])
     try:
         subprocess.check_call(getInstallCommand(package), shell=True)
     except:
-        print("=== " + package['name'] + " installation failed ===")
+        print("=== " + PACKAGE['name'] + " installation failed ===")
         raise Exception("install step failed")
 
+def getPostinstallCommand():
+    return f"curl -s {PACKAGE[postinstall] }"
 
-def runPostinstallStep(package):
-    print("=== Running postinstall step for " + package["name"] + " ===")
+
+def runPostinstallStep():
+    print("=== Running postinstall step for " + PACKAGE["name"] + " ===")
     try:
-        subprocess.check_call(package["postinstall"])
+        subprocess.check_call(getPostInstallCommand())
     except:
-        print("=== postinstall for " + package["name"] + "failed :C ===")
+        print("=== postinstall for " + PACKAGE["name"] + "failed :C ===")
 
 packages = getPackages()
 for package in packages:
-    if isAlreadyInstalled(package):
-        print(package['name'] + " is already installed")
+    PACKAGE = package
+    if isAlreadyInstalled():
+        print(PACKAGE['name'] + " is already installed")
         continue
 
-    if package['preinstall']:
+    if PACKAGE['preinstall']:
         try:
-            runPreinstallStep(package)
+            runPreinstallStep()
         except:
             continue
 
     try:
-        runInstallationStep(package)
+        runInstallationStep()
     except:
         continue
 
-    if package['postinstall']:
+    if PACKAGE['postinstall']:
         try:
-            runPostinstallStep(package)
+            runPostinstallStep()
         except:
             continue
