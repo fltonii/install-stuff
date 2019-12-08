@@ -1,9 +1,9 @@
-name,source,package name
-git,yay,git
-VSCode,yay,visual-studio-code-bin
-Node,yay,nodejs
-Yarn,yay,yarn
-Chrome dev,yay,google-chrome-dev
-Spotify,yay,spotify-dev
-Slack,yay,slack-desktop
-Discord,yay,discord-canary
+name,source,package name,
+git,yay,git,
+VSCode,yay,visual-studio-code-bin,
+Node,yay,nodejs,
+Yarn,yay,yarn,
+Chrome dev,yay,google-chrome-dev,
+Spotify,yay,spotify-dev,
+Slack,yay,slack-desktop,
+Discord,yay,discord-canary,
