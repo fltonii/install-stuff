@@ -20,7 +20,6 @@ def getPackages():
             line = line + 1
         return packages
 
-
 def getInstallCommand():
     source = PACKAGE['source']
     package_name = package['package']
@@ -28,16 +27,19 @@ def getInstallCommand():
         return f"pacman -Sy --noconfirm {package_name}"
     elif source == "yay":
         return f"yay -Sy --noconfirm {package_name}"
+    if source == "pip":
+        return f"sudo pip install {package_name}"
 
 def isAlreadyInstalled():
     source = PACKAGE['source']
     pkg = PACKAGE["package"]
+    if source == "pip":
+        return False
     try:
         subprocess.check_call(f"{source} -Qs {pkg} > /dev/null", shell=True)
         return True
     except:
         return False
-
 
 def runInstallationStep():
     print("Installing package " + PACKAGE["name"])
@@ -54,8 +56,6 @@ for package in packages:
     if isAlreadyInstalled():
         print(PACKAGE['name'] + " is already installed")
         continue
-
-
     try:
         runInstallationStep()
     except:
