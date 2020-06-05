@@ -3,7 +3,6 @@ DIR="$(dirname "$(which "$0")")"
 
 readonly VSCODE_CONFIG=~/.config/Code/User
 readonly VSCODE_DIR=$DIR/vscode
-readonly VSCODE_EXTENSIONS=$VSCODE_DIR/extensions.txt
 
 #install prerequisites
 sudo pacman -Syu --noconfirm
@@ -20,9 +19,5 @@ git config --global user.email "tonialjoao97@gmail.com"
 cp $VSCODE_DIR/settings.json $VSCODE_CONFIG 
 cp $VSCODE_DIR/keybindings.json $VSCODE_CONFIG
 
-# install vscode extensions 
-
-echo $PATH
-while read extension; do
-	code --install-extension $extension
-done < $VSCODE_EXTENSIONS
+# install vscode extensions
+$VSCODE_DIR/install-extensions.sh
